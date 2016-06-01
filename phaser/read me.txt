@@ -1,0 +1,7 @@
+Each zip file contains the source code of each lesson for each game.
+
+To run a Phaser game you need a local web server, as explained in lesson "Setting up a Local Web Server".
+
+Feel free to use these games and assets as part of your own games.
+
+Hope you enjoy the course!
