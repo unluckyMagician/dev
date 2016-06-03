@@ -37,12 +37,16 @@ var GameState = {
 		var self = this;
 		var animal;
 		animalData.forEach(function(element) {
-			animal = self.animals.create(self.game.world.centerX, self.game.world.centerY, element.key);
+			animal = self.animals.create(-1000, self.game.world.centerY, element.key);
 			animal.customParams = {text: element.text};
 			animal.anchor.setTo(0.5);
 			animal.inputEnabled = true;
-
+			animal.input.pixelPerfectClick = true;
+			animal.events.onInputDown.add(self.animateAnimal, self);
 		});
+
+		this.currentAnimal = this.animals.next();
+		this.currentAnimal.position.set(this.game.world.centerX, this.game.world.centerY);
 
 		this.rightArrow = this.game.add.sprite(580, this.game.world.centerY, 'arrow');
 		this.rightArrow.anchor.setTo(0.5);
@@ -51,7 +55,7 @@ var GameState = {
 		this.leftArrow = this.game.add.sprite(60, this.game.world.centerY, 'arrow');
 		this.leftArrow.anchor.setTo(0.5);
 		this.leftArrow.scale.x = -1;
-		this.leftArrow.customParams = {direction: 1}
+		this.leftArrow.customParams = {direction: -1}
 
 		this.leftArrow.inputEnabled = true;
 		this.leftArrow.input.pixelPerfectClick = true;
